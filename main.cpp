@@ -34,37 +34,37 @@ std::string trim(const std::string &str, const std::string &whitespace);
 void reset();
 
 int main(){                          //h:mm:ss AM/PM                              //hh:mm:ss AM/PM                                   //h:mm AM/PM                       //h:mm:ss (24)                         //hh:mm:ss                                 // h:mm
-    std::regex const clockPattern{"^([1-9]{1}):([0-5][0-9]):([0-5][0-9]) (AM|PM)$|^(0[1-9]|1[0-1]):([0-5][0-9]):([0-5][0-9]) (AM|PM)$|^([1-9]{1}):([0-5][0-9]) (AM|PM)$|^([1-9]{1}):([0-5][0-9]):([0-5][0-9])$|^(0[1-9]|1[0-1]):([0-5][0-9]):([0-5][0-9])$|^([1-9]{1}):([0-5][0-9])$"};
+    std::regex const clockPattern{"^([1-9]{1}):([0-5][0-9]):([0-5][0-9]) (AM|PM)$|^(0[1-9]|1[0-1]):([0-5][0-9]):([0-5][0-9]) (AM|PM)$|^([1-9]{1}):([0-5][0-9]) (AM|PM)$|^([1-9]{1}):([0-5][0-9]):([0-5][0-9])$|^(0[1-9]|1[0-1]):([0-5][0-9]):([0-5][0-9])$|^(0[0-2]|1[0-9]):([0-5][0-9])$"};
     std::smatch match;
     std::string userAnswer;
     const std::string exitKey = "QUIT";
     std::vector<clockType> clocks;
 
     while(userAnswer != exitKey){
-        std::cout << "What is the current time?" << std::endl;
+        //std::cout << "What is the current time?" << std::endl;
         std::getline(std::cin, userAnswer);
         std::transform(userAnswer.begin(), userAnswer.end(), userAnswer.begin(), ::toupper);
         if(userAnswer != exitKey){
             if(std::regex_match(userAnswer, match, clockPattern)){
-                std::cout << match[1] << std::endl;
-                std::cout << match[2] << std::endl;
-                std::cout << match[3] << std::endl;
-                std::cout << match[4] << std::endl;
-                std::cout << match[5] << std::endl;
-                std::cout << match[6] << std::endl;
-                std::cout << match[7] << std::endl;
-                std::cout << match[8] << std::endl;
-                std::cout << match[9] << std::endl;
-                std::cout << match[10] << std::endl;
-                std::cout << match[11] << std::endl;
-                std::cout << match[12] << std::endl;
-                std::cout << match[13] << std::endl;
-                std::cout << match[14] << std::endl;
-                std::cout << match[15] << std::endl;
-                std::cout << match[16] << std::endl;
-                std::cout << match[17] << std::endl;
-                std::cout << match[18] << std::endl;
-                std::cout << match[19] << std::endl;
+                // std::cout << match[1] << std::endl;
+                // std::cout << match[2] << std::endl;
+                // std::cout << match[3] << std::endl;
+                // std::cout << match[4] << std::endl;
+                // std::cout << match[5] << std::endl;
+                // std::cout << match[6] << std::endl;
+                // std::cout << match[7] << std::endl;
+                // std::cout << match[8] << std::endl;
+                // std::cout << match[9] << std::endl;
+                // std::cout << match[10] << std::endl;
+                // std::cout << match[11] << std::endl;
+                // std::cout << match[12] << std::endl;
+                // std::cout << match[13] << std::endl;
+                // std::cout << match[14] << std::endl;
+                // std::cout << match[15] << std::endl;
+                // std::cout << match[16] << std::endl;
+                // std::cout << match[17] << std::endl;
+                // std::cout << match[18] << std::endl;
+                // std::cout << match[19] << std::endl;
 
                 if(!match[1].str().empty() && !match[4].str().empty()){
                     clockType clock(std::stoi(match[1]), std::stoi(match[2]), std::stoi(match[3]), TWELVE, clockType::strToAmPm.at(match[4]));
