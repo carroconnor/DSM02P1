@@ -118,7 +118,7 @@ std::string trim(const std::string &str,
 }
 
 void reset(){
-    std::cout << "You entered an invalid clock format." << std::endl;
+    //std::cout << "You entered an invalid clock format." << std::endl;
     std::cin.clear();
     std::cin.ignore(200, '\n');
 }
