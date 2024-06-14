@@ -41,14 +41,14 @@ int main(){                          //h:mm:ss AM/PM                            
     std::regex const simple12{"^(0[0-9]|1[0-2]):([0-5][0-9]) (AM|PM)$"};
     std::regex const complex12{"^(0[1-9]|1[0-2]):([0-5][0-9]):([0-5][0-9]) (AM|PM)$"};
     std::regex const complex24{"^(0[0-9]|1[0-9]|2[0-3]):([0-5][0-9]):([0-5][0-9])$"};
-    std::regex const singleHourWithSeconds{"^([0-9]):([0-5][0-9]):([0-5][0-9]) (AM|PM)$"};
+    std::regex const singleHourComplex{"^([0-9]):([0-5][0-9]):([0-5][0-9]) (AM|PM)$"};
+    //std::regex const clockPattern = {"^(0[0-9]|1[0-9]|2[0-3]):([0-5][0-9])$|^(0[0-9]|1[0-2]):([0-5][0-9]) (AM|PM)$|^(0[1-9]|1[0-2]):([0-5][0-9]):([0-5][0-9]) (AM|PM)$|^(0[0-9]|1[0-9]|2[0-3]):([0-5][0-9]):([0-5][0-9])$|^([0-9]):([0-5][0-9]):([0-5][0-9]) (AM|PM)$"};
     std::smatch match;
     std::string userAnswer;
     const std::string exitKey = "QUIT";
     std::vector<clockType> clocks;
 
     while(userAnswer != exitKey){
-        //std::cout << "What is the current time?" << std::endl;
         std::getline(std::cin, userAnswer);
         std::transform(userAnswer.begin(), userAnswer.end(), userAnswer.begin(), ::toupper);
         if(userAnswer != exitKey){
@@ -57,103 +57,20 @@ int main(){                          //h:mm:ss AM/PM                            
                 clocks.push_back(clock);
             }
             else if(std::regex_match(userAnswer, match, simple12)){
-                // std::cout << match[0] << std::endl;
-                // std::cout << match[1] << std::endl;
-                // std::cout << match[2] << std::endl;
-                // std::cout << match[3] << std::endl;
-                // std::cout << match[4] << std::endl;
-                // std::cout << match[5] << std::endl;
-                // std::cout << match[6] << std::endl;
-                // std::cout << match[7] << std::endl;
                 clockType clock(std::stoi(match[1]), std::stoi(match[2]), 0, TWELVE, clockType::strToAmPm.at(match[3]));
                 clocks.push_back(clock);
             }
             else if(std::regex_match(userAnswer, match, complex12)){
-                // std::cout << match[0] << std::endl;
-                // std::cout << match[1] << std::endl;
-                // std::cout << match[2] << std::endl;
-                // std::cout << match[3] << std::endl;
-                // std::cout << match[4] << std::endl;
-                // std::cout << match[5] << std::endl;
-                // std::cout << match[6] << std::endl;
-                // std::cout << match[7] << std::endl;
                 clockType clock(std::stoi(match[1]), std::stoi(match[2]), std::stoi(match[3]), TWELVE, clockType::strToAmPm.at(match[4]));
                 clocks.push_back(clock);
             }
-            else if(std::regex_match(userAnswer, match, singleHourWithSeconds)){
-                // std::cout << match[0] << std::endl;
-                // std::cout << match[1] << std::endl;
-                // std::cout << match[2] << std::endl;
-                // std::cout << match[3] << std::endl;
-                // std::cout << match[4] << std::endl;
-                // std::cout << match[5] << std::endl;
-                // std::cout << match[6] << std::endl;
-                // std::cout << match[7] << std::endl;
+            else if(std::regex_match(userAnswer, match, singleHourComplex)){
                 clockType clock(std::stoi(match[1]), std::stoi(match[2]), std::stoi(match[3]), TWELVE, clockType::strToAmPm.at(match[4]));
                 clocks.push_back(clock);
             }
             else if(std::regex_match(userAnswer, match, complex24)){
-                // std::cout << match[0] << std::endl;
-                // std::cout << match[1] << std::endl;
-                // std::cout << match[2] << std::endl;
-                // std::cout << match[3] << std::endl;
-                // std::cout << match[4] << std::endl;
-                // std::cout << match[5] << std::endl;
-                // std::cout << match[6] << std::endl;
-                // std::cout << match[7] << std::endl;
                 clockType clock(std::stoi(match[1]), std::stoi(match[2]), std::stoi(match[3]), TWENTYFOUR, AM);
                 clocks.push_back(clock);
-            }
-            // if(std::regex_match(userAnswer, match, clockPattern)){
-            //     std::cout << match[0] << std::endl;
-            //     std::cout << match[1] << std::endl;
-            //     std::cout << match[2] << std::endl;
-            //     std::cout << match[3] << std::endl;
-            //     std::cout << match[4] << std::endl;
-            //     std::cout << match[5] << std::endl;
-            //     std::cout << match[6] << std::endl;
-            //     std::cout << match[7] << std::endl;
-            //     std::cout << match[8] << std::endl;
-            //     std::cout << match[9] << std::endl;
-            //     std::cout << match[10] << std::endl;
-            //     std::cout << match[11] << std::endl;
-            //     std::cout << match[12] << std::endl;
-            //     std::cout << match[13] << std::endl;
-            //     std::cout << match[14] << std::endl;
-            //     std::cout << match[15] << std::endl;
-            //     std::cout << match[16] << std::endl;
-            //     std::cout << match[17] << std::endl;
-            //     std::cout << match[18] << std::endl;
-            //     std::cout << match[19] << std::endl;
-
-            //     if(!match[1].str().empty() && !match[4].str().empty()){
-            //         clockType clock(std::stoi(match[1]), std::stoi(match[2]), std::stoi(match[3]), TWELVE, clockType::strToAmPm.at(match[4]));
-            //         clocks.push_back(clock);
-            //     }
-            //     else if(!match[5].str().empty() && !match[8].str().empty()){
-            //         clockType clock(std::stoi(match[5]), std::stoi(match[6]), std::stoi(match[7]), TWELVE, clockType::strToAmPm.at(match[8]));
-            //         clocks.push_back(clock);
-            //     }
-            //     else if(!match[9].str().empty() && !match[11].str().empty()){
-            //         clockType clock(std::stoi(match[9]), std::stoi(match[10]), 0, TWELVE, clockType::strToAmPm.at(match[11]));
-            //         clocks.push_back(clock);
-            //     }
-            //     else if(!match[12].str().empty() && !match[14].str().empty()){
-            //         clockType clock(std::stoi(match[12]), std::stoi(match[13]), std::stoi(match[14]), TWENTYFOUR, AM);
-            //         clocks.push_back(clock);
-            //     }
-            //     else if(!match[15].str().empty() && !match[16].str().empty() && !match[17].str().empty()){
-            //         clockType clock(std::stoi(match[15]), std::stoi(match[16]), std::stoi(match[17]), TWENTYFOUR, AM);
-            //         clocks.push_back(clock);
-            //     }
-            //     else{
-            //         clockType clock(std::stoi(match[17]), std::stoi(match[1]), 0, TWENTYFOUR, AM);
-            //         clocks.push_back(clock);
-            //     }
-
-            //}
-            else{
-                reset();
             }
         }
     }
@@ -180,6 +97,6 @@ std::string trim(const std::string &str,
 
 void reset(){
     //std::cout << "You entered an invalid clock format." << std::endl;
-    std::cin.clear();
-    std::cin.ignore(200, '\n');
+    // std::cin.clear();
+    // std::cin.ignore(200, '\n');
 }
