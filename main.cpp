@@ -33,8 +33,9 @@
 std::string trim(const std::string &str, const std::string &whitespace);
 void reset();
 
-int main(){                          //h:mm:ss AM/PM                              //hh:mm:ss AM/PM                                   //h:mm AM/PM                       //h:mm:ss (24)                         //hh:mm:ss                                 // h:mm
-    std::regex const clockPattern{"^([1-9]{1}):([0-5][0-9]):([0-5][0-9]) (AM|PM)$|^(0[1-9]|1[0-1]):([0-5][0-9]):([0-5][0-9]) (AM|PM)$|^([1-9]{1}):([0-5][0-9]) (AM|PM)$|^([1-9]{1}):([0-5][0-9]):([0-5][0-9])$|^(0[1-9]|1[0-1]):([0-5][0-9]):([0-5][0-9])$|^(0[0-9]|1[0-9]):([0-5][0-9])$|^(1[])"};
+int main(){                          //h:mm:ss AM/PM                              //hh:mm:ss AM/PM                                   //hh:mm AM/PM                       //h:mm:ss (24)                         //hh:mm:ss                                 // h:mm
+    std::regex const clockPattern{"^([1-9]{1}):([0-5][0-9]):([0-5][0-9]) (AM|PM)$|^(0[1-9]|1[0-1]):([0-5][0-9]):([0-5][0-9]) (AM|PM)$|^([1-9]{1}):([0-5][0-9]) (AM|PM)$|^([1-9]{1}):([0-5][0-9]):([0-5][0-9])$|^(0[1-9]|1[0-1]):([0-5][0-9]):([0-5][0-9])$|^(0[0-9]|1[0-9]|2[0-3]):([0-5][0-9])$"};
+    //std::regex const clockPattern{"^(0[0-9]|1[0-9]|2[0-3]):([0-5][0-9])$"};
     std::smatch match;
     std::string userAnswer;
     const std::string exitKey = "QUIT";
