@@ -33,15 +33,13 @@
 std::string trim(const std::string &str, const std::string &whitespace);
 void reset();
 
-int main(){                          //h:mm:ss AM/PM                              //hh:mm:ss AM/PM                                    //hh:mm AM/PM                          //h:mm:ss (24)                              //hh:mm:ss                                 // h:mm
-    //std::regex const clockPattern{"^([1-9]{1}):([0-5][0-9]):([0-5][0-9]) (AM|PM)$|^(0[1-9]|1[0-2]):([0-5][0-9]):([0-5][0-9]) (AM|PM)$|^(0[0-9]|1[0-2]):([0-5][0-9]) (AM|PM)$|^(0[1-9]|1[0-2]):([0-5][0-9]):([0-5][0-9])$|^(0[0-9]|1[0-9]|2(0-3)):([0-5][0-9]):([0-5][0-9])$|^(0[0-9]|1[0-9]|2[0-3]):([0-5][0-9])$"};
-    //std::regex const clockPattern{"^((?:0[0-9]|1[0-9]|2[0-3])):([0-5][0-9]):([0-5][0-9])$"};
-    //std::regex const clockPattern{"^(0[1-9]|1[0-2]):([0-5][0-9]):([0-5][0-9]) (AM|PM)$"}; //11:28:00 am
-    std::regex const simple24{"^(0[0-9]|1[0-9]|2[0-3]):([0-5][0-9])$"};
-    std::regex const simple12{"^(0[0-9]|1[0-2]):([0-5][0-9]) (AM|PM)$"};
-    std::regex const complex12{"^(0[1-9]|1[0-2]):([0-5][0-9]):([0-5][0-9]) (AM|PM)$"};
-    std::regex const complex24{"^(0[0-9]|1[0-9]|2[0-3]):([0-5][0-9]):([0-5][0-9])$"};
-    std::regex const singleHourComplex{"^([0-9]):([0-5][0-9]):([0-5][0-9]) (AM|PM)$"};
+int main(){
+    std::regex const simple24{"^(0[0-9]|1[0-9]|2[0-3]):([0-5][0-9])$"}; //hh:mm
+    std::regex const simple12{"^(0[0-9]|1[0-2]):([0-5][0-9]) (AM|PM)$"}; //hh:mm AM/PM
+    std::regex const complex12{"^(0[1-9]|1[0-2]):([0-5][0-9]):([0-5][0-9]) (AM|PM)$"}; //hh:mm:ss AM/PM
+    std::regex const complex24{"^(0[0-9]|1[0-9]|2[0-3]):([0-5][0-9]):([0-5][0-9])$"}; //hh:mm:ss
+    std::regex const singleHourComplex{"^([0-9]):([0-5][0-9]):([0-5][0-9]) (AM|PM)$"}; //h:mm:ss AM/PM
+    //below is the pattern if all were combined but I found the above easiest to read and use
     //std::regex const clockPattern = {"^(0[0-9]|1[0-9]|2[0-3]):([0-5][0-9])$|^(0[0-9]|1[0-2]):([0-5][0-9]) (AM|PM)$|^(0[1-9]|1[0-2]):([0-5][0-9]):([0-5][0-9]) (AM|PM)$|^(0[0-9]|1[0-9]|2[0-3]):([0-5][0-9]):([0-5][0-9])$|^([0-9]):([0-5][0-9]):([0-5][0-9]) (AM|PM)$"};
     std::smatch match;
     std::string userAnswer;
@@ -93,10 +91,4 @@ std::string trim(const std::string &str,
     const auto strRange = strEnd - strBegin + 1;
 
     return str.substr(strBegin, strRange);
-}
-
-void reset(){
-    //std::cout << "You entered an invalid clock format." << std::endl;
-    // std::cin.clear();
-    // std::cin.ignore(200, '\n');
 }
